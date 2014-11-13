@@ -21,27 +21,19 @@ import freemarker.template.Template;
 import freemarker.template.TemplateException;
 
 public class CodeCreater {
-	private static String database = null;
-	private static String selectTableName = null;
-	private static String namespacePrefix = null;
-	private static String pojoSuffix = null;
-	private static String daoSuffix = null;
-	private static String daoImplSuffix = null;
-	private static String serviceSuffix = null;
-	private static String serviceImplSuffix = null;
-	private static String controllerSuffix = null;
-	private static String outputPath = null;
+	private static String database = "";
+	private static String selectTableName = "";
+	private static String namespace = "";
+	private static String fileSuffix = "";
+	private static String templateName = "";
+	private static String outputPath = "";
 
 	private static void reset() {
 		database = ZJ_ConfigUtils.getProperty("database");
 		selectTableName = ZJ_ConfigUtils.getProperty("selectTableName");
-		namespacePrefix = ZJ_ConfigUtils.getProperty("namespacePrefix");
-		pojoSuffix = ZJ_ConfigUtils.getProperty("pojoSuffix");
-		daoSuffix = ZJ_ConfigUtils.getProperty("daoSuffix");
-		daoImplSuffix = ZJ_ConfigUtils.getProperty("daoImplSuffix");
-		serviceSuffix = ZJ_ConfigUtils.getProperty("serviceSuffix");
-		serviceImplSuffix = ZJ_ConfigUtils.getProperty("serviceImplSuffix");
-		controllerSuffix = ZJ_ConfigUtils.getProperty("controllerSuffix");
+		namespace = ZJ_ConfigUtils.getProperty("namespace");
+		fileSuffix = ZJ_ConfigUtils.getProperty("fileSuffix");
+		templateName = ZJ_ConfigUtils.getProperty("templateName");
 		outputPath = ZJ_ConfigUtils.getProperty("outputPath");
 	}
 
@@ -57,13 +49,9 @@ public class CodeCreater {
 		List<TablePojo> tableList = ZJ_CodeGeneratorUtils.getTableList();
 		Map<String, Object> tempData = new HashMap<String, Object>();
 		tempData.put("now", new SimpleDateFormat("yyyy-MM-dd HH:mm:ss").format(new Date()));
-		tempData.put("namespacePrefix", namespacePrefix);
-		tempData.put("pojoSuffix", pojoSuffix);
-		tempData.put("daoSuffix", daoSuffix);
-		tempData.put("daoImplSuffix", daoImplSuffix);
-		tempData.put("serviceSuffix", serviceSuffix);
-		tempData.put("serviceImplSuffix", serviceImplSuffix);
-		tempData.put("controllerSuffix", controllerSuffix);
+		tempData.put("namespace", namespace);
+		tempData.put("fileSuffix", fileSuffix);
+		tempData.put("templateName", templateName);
 		Writer out = null;
 		for (TablePojo tablePojo : tableList) {
 			if (tablePojo.getTableName().contains(selectTableName)) {
@@ -84,34 +72,9 @@ public class CodeCreater {
 		}
 	}
 
-	private static void pojoCreator() throws IOException, TemplateException, ClassNotFoundException, SQLException {
-		String path = outputPath + "/" + database + "/" + namespacePrefix.replaceAll("[.]", "/") + "/pojo/";
-		creator("pojo.ftl", path, pojoSuffix);
-	}
-
-	private static void daoCreator() throws IOException, TemplateException, ClassNotFoundException, SQLException {
-		String path = outputPath + "/" + database + "/" + namespacePrefix.replaceAll("[.]", "/") + "/dao/";
-		creator("dao.ftl", path, daoSuffix);
-	}
-
-	private static void daoImplCreator() throws IOException, TemplateException, ClassNotFoundException, SQLException {
-		String path = outputPath + "/" + database + "/" + namespacePrefix.replaceAll("[.]", "/") + "/dao/impl/";
-		creator("daoImpl.ftl", path, daoImplSuffix);
-	}
-
-	private static void serviceCreator() throws IOException, TemplateException, ClassNotFoundException, SQLException {
-		String path = outputPath + "/" + database + "/" + namespacePrefix.replaceAll("[.]", "/") + "/service/";
-		creator("service.ftl", path, serviceSuffix);
-	}
-
-	private static void serviceImplCreator() throws IOException, TemplateException, ClassNotFoundException, SQLException {
-		String path = outputPath + "/" + database + "/" + namespacePrefix.replaceAll("[.]", "/") + "/service/impl/";
-		creator("serviceImpl.ftl", path, serviceImplSuffix);
-	}
-
-	private static void controllerCreator() throws IOException, TemplateException, ClassNotFoundException, SQLException {
-		String path = outputPath + "/" + database + "/" + namespacePrefix.replaceAll("[.]", "/") + "/controller/";
-		creator("controller.ftl", path, controllerSuffix);
+	private static void fileCreator() throws IOException, TemplateException, ClassNotFoundException, SQLException {
+		String path = outputPath + "/" + database + "/" + namespace.replaceAll("[.]", "/") + "/";
+		creator(templateName, path, fileSuffix);
 	}
 
 	public static void mainCreator() throws IOException, TemplateException, ClassNotFoundException, SQLException {
@@ -121,16 +84,8 @@ public class CodeCreater {
 		if (outFolder.exists()) {
 			outFolder.delete();
 		}
-		pojoCreator();
-		System.out.println("****************************************************************");
-		daoCreator();
-		System.out.println("****************************************************************");
-		daoImplCreator();
-		System.out.println("****************************************************************");
-		serviceCreator();
-		System.out.println("****************************************************************");
-		serviceImplCreator();
-		System.out.println("****************************************************************");
-		controllerCreator();
+		fileCreator();
+		System.out.println("*****************************文件生成完毕****************************");
+
 	}
 }

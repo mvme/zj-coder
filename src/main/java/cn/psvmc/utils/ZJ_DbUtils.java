@@ -26,14 +26,14 @@ public class ZJ_DbUtils {
 	private QueryRunner queryRunner = new QueryRunner();
 
 	public Connection getConnection() throws ClassNotFoundException, SQLException {
-		String driverClassName = ZJ_ConfigUtils.getProperty( "driverClassName");
-		String host = ZJ_ConfigUtils.getProperty( "host");
-		String port = ZJ_ConfigUtils.getProperty( "port");
-		String database = ZJ_ConfigUtils.getProperty( "database");
-		String charset = ZJ_ConfigUtils.getProperty( "charset");
+		String driverClassName = "com.mysql.jdbc.Driver";
+		String host = ZJ_ConfigUtils.getProperty("host");
+		String port = ZJ_ConfigUtils.getProperty("port");
+		String database = ZJ_ConfigUtils.getProperty("database");
+		String charset = ZJ_ConfigUtils.getProperty("charset");
 		String url = String.format("jdbc:mysql://%s:%s/%s?characterEncoding=%s", host, port, database, charset);
-		String username = ZJ_ConfigUtils.getProperty( "username");
-		String password = ZJ_ConfigUtils.getProperty( "password");
+		String username = ZJ_ConfigUtils.getProperty("username");
+		String password = ZJ_ConfigUtils.getProperty("password");
 		Connection connection = null;
 		Class.forName(driverClassName);
 		connection = DriverManager.getConnection(url, username, password);

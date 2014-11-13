@@ -14,6 +14,9 @@ import javax.swing.JTextField;
 import cn.psvmc.utils.ZJ_ConfigUtils;
 import cn.psvmc.utils.ZJ_FolderUtils;
 import freemarker.template.TemplateException;
+import java.awt.Color;
+import java.awt.BorderLayout;
+import java.awt.Rectangle;
 
 /**
  * @文件名：Index.java
@@ -24,16 +27,12 @@ import freemarker.template.TemplateException;
 public class Index extends javax.swing.JFrame {
 
 	private static final long serialVersionUID = 1L;
-	private static String selectTableName = null;
-	private static String namespacePrefix = null;
-	private static String tablePrefix = null;
-	private static String pojoSuffix = null;
-	private static String daoSuffix = null;
-	private static String daoImplSuffix = null;
-	private static String serviceSuffix = null;
-	private static String serviceImplSuffix = null;
-	private static String controllerSuffix = null;
-	private static String outputPath = null;
+	private static String selectTableName = "";
+	private static String namespace = "";
+	private static String tablePrefix = "";
+	private static String fileSuffix = "";
+	private static String templateName = "";
+	private static String outputPath = "";
 
 	private static String host = "127.0.0.1";
 	private static String port = "3306";
@@ -43,6 +42,7 @@ public class Index extends javax.swing.JFrame {
 	private static String password = "root";
 
 	public Index() {
+		setBackground(Color.ORANGE);
 		initComponents();
 		init();
 	}
@@ -63,22 +63,12 @@ public class Index extends javax.swing.JFrame {
 		jTextField12 = new javax.swing.JTextField();
 		jPanel1 = new javax.swing.JPanel();
 		jLabel2 = new javax.swing.JLabel();
-		jTextField2 = new javax.swing.JTextField();
+		tf_namespace = new javax.swing.JTextField();
 		jLabel3 = new javax.swing.JLabel();
 		jTextField3 = new javax.swing.JTextField();
 		jLabel4 = new javax.swing.JLabel();
-		jLabel5 = new javax.swing.JLabel();
 		jTextField4 = new javax.swing.JTextField();
-		jTextField5 = new javax.swing.JTextField();
-		jTextField6 = new javax.swing.JTextField();
 		jButton2 = new javax.swing.JButton();
-		jLabel6 = new javax.swing.JLabel();
-		jLabel7 = new javax.swing.JLabel();
-		jLabel8 = new javax.swing.JLabel();
-		jLabel9 = new javax.swing.JLabel();
-		jTextField7 = new javax.swing.JTextField();
-		jTextField8 = new javax.swing.JTextField();
-		jTextField9 = new javax.swing.JTextField();
 		jTextField10 = new javax.swing.JTextField();
 		jButton4 = new javax.swing.JButton();
 		jButton1 = new javax.swing.JButton();
@@ -108,7 +98,7 @@ public class Index extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("\u4ee3\u7801\u751f\u6210\u5668(by\u5f20\u5251)");
 		setAlwaysOnTop(true);
-		setBounds(new java.awt.Rectangle(100, 100, 335, 440));
+		setBounds(new Rectangle(100, 100, 335, 300));
 		setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		setFont(new java.awt.Font("新宋体", 0, 12));
 		setForeground(java.awt.Color.white);
@@ -157,7 +147,7 @@ public class Index extends javax.swing.JFrame {
 		gridBagConstraints_23.weightx = 1.0;
 		jPanel2.add(jTextField12, gridBagConstraints_23);
 
-		jPanel3.add(jPanel2, java.awt.BorderLayout.CENTER);
+		jPanel3.add(jPanel2, BorderLayout.NORTH);
 
 		lblDatabase = new JLabel();
 		lblDatabase.setText("数据库名：");
@@ -277,36 +267,54 @@ public class Index extends javax.swing.JFrame {
 		gbc_label.gridy = 1;
 		jPanel1.add(label, gbc_label);
 
-		textField = new JTextField();
-		GridBagConstraints gbc_textField = new GridBagConstraints();
-		gbc_textField.insets = new Insets(0, 0, 5, 0);
-		gbc_textField.fill = GridBagConstraints.HORIZONTAL;
-		gbc_textField.gridx = 1;
-		gbc_textField.gridy = 1;
-		jPanel1.add(textField, gbc_textField);
-		textField.setColumns(10);
+		tf_tableName = new JTextField();
+		GridBagConstraints gbc_tf_tableName = new GridBagConstraints();
+		gbc_tf_tableName.insets = new Insets(0, 0, 5, 0);
+		gbc_tf_tableName.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tf_tableName.gridx = 1;
+		gbc_tf_tableName.gridy = 1;
+		jPanel1.add(tf_tableName, gbc_tf_tableName);
+		tf_tableName.setColumns(10);
 
-		jLabel2.setText("\u547d\u540d\u7a7a\u95f4\u524d\u7f00\uff1a");
+		label_3 = new JLabel("所用模板：");
+		GridBagConstraints gbc_label_3 = new GridBagConstraints();
+		gbc_label_3.anchor = GridBagConstraints.WEST;
+		gbc_label_3.insets = new Insets(0, 0, 5, 5);
+		gbc_label_3.gridx = 0;
+		gbc_label_3.gridy = 2;
+		jPanel1.add(label_3, gbc_label_3);
+
+		tf_templateName = new JTextField();
+		tf_templateName.setText((String) null);
+		tf_templateName.setColumns(10);
+		GridBagConstraints gbc_tf_templateName = new GridBagConstraints();
+		gbc_tf_templateName.insets = new Insets(0, 0, 5, 0);
+		gbc_tf_templateName.fill = GridBagConstraints.BOTH;
+		gbc_tf_templateName.gridx = 1;
+		gbc_tf_templateName.gridy = 2;
+		jPanel1.add(tf_templateName, gbc_tf_templateName);
+
+		jLabel2.setText("命名空间：");
 		gridBagConstraints_3 = new java.awt.GridBagConstraints();
 		gridBagConstraints_3.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_3.gridx = 0;
-		gridBagConstraints_3.gridy = 2;
+		gridBagConstraints_3.gridy = 3;
 		gridBagConstraints_3.anchor = java.awt.GridBagConstraints.WEST;
 		jPanel1.add(jLabel2, gridBagConstraints_3);
 
-		jTextField2.setText("jTextField2");
-		gridBagConstraints_4 = new java.awt.GridBagConstraints();
-		gridBagConstraints_4.insets = new Insets(0, 0, 5, 0);
-		gridBagConstraints_4.gridx = 1;
-		gridBagConstraints_4.gridy = 2;
-		gridBagConstraints_4.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel1.add(jTextField2, gridBagConstraints_4);
+		tf_namespace.setText("jTextField2");
+		gbc_tf_namespace = new java.awt.GridBagConstraints();
+		gbc_tf_namespace.insets = new Insets(0, 0, 5, 0);
+		gbc_tf_namespace.gridx = 1;
+		gbc_tf_namespace.gridy = 3;
+		gbc_tf_namespace.fill = java.awt.GridBagConstraints.HORIZONTAL;
+		jPanel1.add(tf_namespace, gbc_tf_namespace);
 
-		jLabel3.setText("\u8868\u540d\u524d\u7f00\uff1a");
+		jLabel3.setText("表名前缀(去掉)：");
 		gridBagConstraints_5 = new java.awt.GridBagConstraints();
 		gridBagConstraints_5.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_5.gridx = 0;
-		gridBagConstraints_5.gridy = 3;
+		gridBagConstraints_5.gridy = 4;
 		gridBagConstraints_5.anchor = java.awt.GridBagConstraints.WEST;
 		jPanel1.add(jLabel3, gridBagConstraints_5);
 
@@ -314,49 +322,25 @@ public class Index extends javax.swing.JFrame {
 		gridBagConstraints_6 = new java.awt.GridBagConstraints();
 		gridBagConstraints_6.insets = new Insets(0, 0, 5, 0);
 		gridBagConstraints_6.gridx = 1;
-		gridBagConstraints_6.gridy = 3;
+		gridBagConstraints_6.gridy = 4;
 		gridBagConstraints_6.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel1.add(jTextField3, gridBagConstraints_6);
 
-		jLabel4.setText("pojo\u540e\u7f00\uff1a");
+		jLabel4.setText("生成文件后缀：");
 		gridBagConstraints_7 = new java.awt.GridBagConstraints();
 		gridBagConstraints_7.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_7.gridx = 0;
-		gridBagConstraints_7.gridy = 4;
+		gridBagConstraints_7.gridy = 5;
 		gridBagConstraints_7.anchor = java.awt.GridBagConstraints.WEST;
 		jPanel1.add(jLabel4, gridBagConstraints_7);
-
-		jLabel5.setText("dao\u540e\u7f00\uff1a");
-		gridBagConstraints_8 = new java.awt.GridBagConstraints();
-		gridBagConstraints_8.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_8.gridx = 0;
-		gridBagConstraints_8.gridy = 5;
-		gridBagConstraints_8.anchor = java.awt.GridBagConstraints.WEST;
-		jPanel1.add(jLabel5, gridBagConstraints_8);
 
 		jTextField4.setText("jTextField4");
 		gridBagConstraints_9 = new java.awt.GridBagConstraints();
 		gridBagConstraints_9.insets = new Insets(0, 0, 5, 0);
 		gridBagConstraints_9.gridx = 1;
-		gridBagConstraints_9.gridy = 4;
+		gridBagConstraints_9.gridy = 5;
 		gridBagConstraints_9.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel1.add(jTextField4, gridBagConstraints_9);
-
-		jTextField5.setText("jTextField5");
-		gridBagConstraints_10 = new java.awt.GridBagConstraints();
-		gridBagConstraints_10.insets = new Insets(0, 0, 5, 0);
-		gridBagConstraints_10.gridx = 1;
-		gridBagConstraints_10.gridy = 5;
-		gridBagConstraints_10.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel1.add(jTextField5, gridBagConstraints_10);
-
-		jTextField6.setText("jTextField6");
-		gridBagConstraints_11 = new java.awt.GridBagConstraints();
-		gridBagConstraints_11.insets = new Insets(0, 0, 5, 0);
-		gridBagConstraints_11.gridx = 1;
-		gridBagConstraints_11.gridy = 6;
-		gridBagConstraints_11.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel1.add(jTextField6, gridBagConstraints_11);
 
 		jButton2.setText("\u751f\u6210\u4f4d\u7f6e");
 		jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -367,72 +351,16 @@ public class Index extends javax.swing.JFrame {
 		gridBagConstraints_12 = new java.awt.GridBagConstraints();
 		gridBagConstraints_12.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_12.gridx = 0;
-		gridBagConstraints_12.gridy = 10;
+		gridBagConstraints_12.gridy = 6;
 		gridBagConstraints_12.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints_12.weightx = 0.1;
 		jPanel1.add(jButton2, gridBagConstraints_12);
-
-		jLabel6.setText("daoImpl\u540e\u7f00\uff1a");
-		gridBagConstraints_13 = new java.awt.GridBagConstraints();
-		gridBagConstraints_13.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_13.gridx = 0;
-		gridBagConstraints_13.gridy = 6;
-		gridBagConstraints_13.anchor = java.awt.GridBagConstraints.WEST;
-		jPanel1.add(jLabel6, gridBagConstraints_13);
-
-		jLabel7.setText("service\u540e\u7f00\uff1a");
-		gridBagConstraints_14 = new java.awt.GridBagConstraints();
-		gridBagConstraints_14.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_14.gridx = 0;
-		gridBagConstraints_14.gridy = 7;
-		gridBagConstraints_14.anchor = java.awt.GridBagConstraints.WEST;
-		jPanel1.add(jLabel7, gridBagConstraints_14);
-
-		jLabel8.setText("serviceImpl\u540e\u7f00\uff1a");
-		gridBagConstraints_15 = new java.awt.GridBagConstraints();
-		gridBagConstraints_15.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_15.gridx = 0;
-		gridBagConstraints_15.gridy = 8;
-		gridBagConstraints_15.anchor = java.awt.GridBagConstraints.WEST;
-		jPanel1.add(jLabel8, gridBagConstraints_15);
-
-		jLabel9.setText("controller\u540e\u7f00\uff1a");
-		gridBagConstraints_16 = new java.awt.GridBagConstraints();
-		gridBagConstraints_16.insets = new Insets(0, 0, 5, 5);
-		gridBagConstraints_16.gridx = 0;
-		gridBagConstraints_16.gridy = 9;
-		gridBagConstraints_16.anchor = java.awt.GridBagConstraints.WEST;
-		jPanel1.add(jLabel9, gridBagConstraints_16);
-
-		jTextField7.setText("jTextField7");
-		gridBagConstraints_17 = new java.awt.GridBagConstraints();
-		gridBagConstraints_17.insets = new Insets(0, 0, 5, 0);
-		gridBagConstraints_17.gridx = 1;
-		gridBagConstraints_17.gridy = 7;
-		gridBagConstraints_17.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel1.add(jTextField7, gridBagConstraints_17);
-
-		jTextField8.setText("jTextField8");
-		gridBagConstraints_18 = new java.awt.GridBagConstraints();
-		gridBagConstraints_18.insets = new Insets(0, 0, 5, 0);
-		gridBagConstraints_18.gridx = 1;
-		gridBagConstraints_18.gridy = 8;
-		gridBagConstraints_18.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel1.add(jTextField8, gridBagConstraints_18);
-
-		jTextField9.setText("jTextField9");
-		gridBagConstraints_19 = new java.awt.GridBagConstraints();
-		gridBagConstraints_19.insets = new Insets(0, 0, 5, 0);
-		gridBagConstraints_19.gridx = 1;
-		gridBagConstraints_19.gridy = 9;
-		gridBagConstraints_19.fill = java.awt.GridBagConstraints.HORIZONTAL;
-		jPanel1.add(jTextField9, gridBagConstraints_19);
 
 		jTextField10.setText("jTextField10");
 		gridBagConstraints_20 = new java.awt.GridBagConstraints();
 		gridBagConstraints_20.insets = new Insets(0, 0, 5, 0);
 		gridBagConstraints_20.gridx = 1;
-		gridBagConstraints_20.gridy = 10;
+		gridBagConstraints_20.gridy = 6;
 		gridBagConstraints_20.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints_20.weightx = 0.7;
 		jPanel1.add(jTextField10, gridBagConstraints_20);
@@ -440,14 +368,14 @@ public class Index extends javax.swing.JFrame {
 		jButton4.setText("\u4fee\u6539");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 11;
+		gridBagConstraints.gridy = 7;
 		gridBagConstraints.gridwidth = 2;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
 		jPanel1.add(jButton4, gridBagConstraints);
 
 		jTabbedPane1.addTab("\u751f\u6210\u914d\u7f6e", jPanel1);
 
-		getContentPane().add(jTabbedPane1, java.awt.BorderLayout.CENTER);
+		getContentPane().add(jTabbedPane1, BorderLayout.NORTH);
 
 		jButton1.setText("\u4ee3\u7801\u751f\u6210");
 		jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -513,27 +441,23 @@ public class Index extends javax.swing.JFrame {
 	 * @date 2014年11月13日 上午10:25:48
 	 */
 	private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {
-		ZJ_ConfigUtils.setProperty( "host", jTextField11.getText());
-		ZJ_ConfigUtils.setProperty( "port", jTextField12.getText());
-		ZJ_ConfigUtils.setProperty( "database", textField_1.getText());
-		ZJ_ConfigUtils.setProperty( "charset", textField_2.getText());
-		ZJ_ConfigUtils.setProperty( "username", jTextField13.getText());
-		ZJ_ConfigUtils.setProperty( "password", jTextField14.getText());
+		ZJ_ConfigUtils.setProperty("host", jTextField11.getText());
+		ZJ_ConfigUtils.setProperty("port", jTextField12.getText());
+		ZJ_ConfigUtils.setProperty("database", textField_1.getText());
+		ZJ_ConfigUtils.setProperty("charset", textField_2.getText());
+		ZJ_ConfigUtils.setProperty("username", jTextField13.getText());
+		ZJ_ConfigUtils.setProperty("password", jTextField14.getText());
 		init();
 		JOptionPane.showMessageDialog(this, "修改成功！");
 	}
 
 	private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {
 		ZJ_ConfigUtils.setProperty("database", this.textField_1.getText());
-		ZJ_ConfigUtils.setProperty("selectTableName", this.textField.getText());
-		ZJ_ConfigUtils.setProperty("namespacePrefix", this.jTextField2.getText());
+		ZJ_ConfigUtils.setProperty("selectTableName", this.tf_tableName.getText());
+		ZJ_ConfigUtils.setProperty("namespace", this.tf_namespace.getText());
 		ZJ_ConfigUtils.setProperty("tablePrefix", this.jTextField3.getText());
-		ZJ_ConfigUtils.setProperty("pojoSuffix", this.jTextField4.getText());
-		ZJ_ConfigUtils.setProperty("daoSuffix", this.jTextField5.getText());
-		ZJ_ConfigUtils.setProperty("daoImplSuffix", this.jTextField6.getText());
-		ZJ_ConfigUtils.setProperty("serviceSuffix", this.jTextField7.getText());
-		ZJ_ConfigUtils.setProperty("serviceImplSuffix", this.jTextField8.getText());
-		ZJ_ConfigUtils.setProperty("controllerSuffix", this.jTextField9.getText());
+		ZJ_ConfigUtils.setProperty("fileSuffix", this.jTextField4.getText());
+		ZJ_ConfigUtils.setProperty("templateName", this.tf_templateName.getText());
 		ZJ_ConfigUtils.setProperty("outputPath", this.jTextField10.getText());
 		init();
 		JOptionPane.showMessageDialog(this, "修改成功！");
@@ -551,31 +475,23 @@ public class Index extends javax.swing.JFrame {
 	 */
 	private void init() {
 		selectTableName = ZJ_ConfigUtils.getProperty("selectTableName");
-		namespacePrefix = ZJ_ConfigUtils.getProperty("namespacePrefix");
+		namespace = ZJ_ConfigUtils.getProperty("namespace");
 		tablePrefix = ZJ_ConfigUtils.getProperty("tablePrefix");
-		pojoSuffix = ZJ_ConfigUtils.getProperty("pojoSuffix");
-		daoSuffix = ZJ_ConfigUtils.getProperty("daoSuffix");
-		daoImplSuffix = ZJ_ConfigUtils.getProperty("daoImplSuffix");
-		serviceSuffix = ZJ_ConfigUtils.getProperty("serviceSuffix");
-		serviceImplSuffix = ZJ_ConfigUtils.getProperty("serviceImplSuffix");
-		controllerSuffix = ZJ_ConfigUtils.getProperty("controllerSuffix");
+		fileSuffix = ZJ_ConfigUtils.getProperty("fileSuffix");
+		templateName = ZJ_ConfigUtils.getProperty("templateName");
 		outputPath = ZJ_ConfigUtils.getProperty("outputPath");
 
-		host = ZJ_ConfigUtils.getProperty( "host");
-		port = ZJ_ConfigUtils.getProperty( "port");
-		database = ZJ_ConfigUtils.getProperty( "database");
-		charset = ZJ_ConfigUtils.getProperty( "charset");
-		username = ZJ_ConfigUtils.getProperty( "username");
-		password = ZJ_ConfigUtils.getProperty( "password");
-		this.textField.setText(selectTableName);
-		this.jTextField2.setText(namespacePrefix);
+		host = ZJ_ConfigUtils.getProperty("host");
+		port = ZJ_ConfigUtils.getProperty("port");
+		database = ZJ_ConfigUtils.getProperty("database");
+		charset = ZJ_ConfigUtils.getProperty("charset");
+		username = ZJ_ConfigUtils.getProperty("username");
+		password = ZJ_ConfigUtils.getProperty("password");
+		this.tf_tableName.setText(selectTableName);
+		this.tf_namespace.setText(namespace);
 		this.jTextField3.setText(tablePrefix);
-		this.jTextField4.setText(pojoSuffix);
-		this.jTextField5.setText(daoSuffix);
-		this.jTextField6.setText(daoImplSuffix);
-		this.jTextField7.setText(serviceSuffix);
-		this.jTextField8.setText(serviceImplSuffix);
-		this.jTextField9.setText(controllerSuffix);
+		this.jTextField4.setText(fileSuffix);
+		this.tf_templateName.setText(templateName);
 		this.jTextField10.setText(outputPath);
 		this.jTextField11.setText(host);
 		this.jTextField12.setText(port);
@@ -606,11 +522,6 @@ public class Index extends javax.swing.JFrame {
 	private javax.swing.JLabel jLabel2;
 	private javax.swing.JLabel jLabel3;
 	private javax.swing.JLabel jLabel4;
-	private javax.swing.JLabel jLabel5;
-	private javax.swing.JLabel jLabel6;
-	private javax.swing.JLabel jLabel7;
-	private javax.swing.JLabel jLabel8;
-	private javax.swing.JLabel jLabel9;
 	private javax.swing.JPanel jPanel1;
 	private javax.swing.JPanel jPanel2;
 	private javax.swing.JPanel jPanel3;
@@ -620,34 +531,19 @@ public class Index extends javax.swing.JFrame {
 	private javax.swing.JTextField jTextField12;
 	private javax.swing.JTextField jTextField13;
 	private javax.swing.JTextField jTextField14;
-	private javax.swing.JTextField jTextField2;
+	private javax.swing.JTextField tf_namespace;
 	private javax.swing.JTextField jTextField3;
 	private javax.swing.JTextField jTextField4;
-	private javax.swing.JTextField jTextField5;
-	private javax.swing.JTextField jTextField6;
-	private javax.swing.JTextField jTextField7;
-	private javax.swing.JTextField jTextField8;
-	private javax.swing.JTextField jTextField9;
 	private JLabel label;
 	private GridBagConstraints gridBagConstraints_3;
-	private GridBagConstraints gridBagConstraints_4;
+	private GridBagConstraints gbc_tf_namespace;
 	private GridBagConstraints gridBagConstraints_5;
 	private GridBagConstraints gridBagConstraints_6;
 	private GridBagConstraints gridBagConstraints_7;
-	private GridBagConstraints gridBagConstraints_8;
 	private GridBagConstraints gridBagConstraints_9;
-	private GridBagConstraints gridBagConstraints_10;
-	private GridBagConstraints gridBagConstraints_11;
 	private GridBagConstraints gridBagConstraints_12;
-	private GridBagConstraints gridBagConstraints_13;
-	private GridBagConstraints gridBagConstraints_14;
-	private GridBagConstraints gridBagConstraints_15;
-	private GridBagConstraints gridBagConstraints_16;
-	private GridBagConstraints gridBagConstraints_17;
-	private GridBagConstraints gridBagConstraints_18;
-	private GridBagConstraints gridBagConstraints_19;
 	private GridBagConstraints gridBagConstraints_20;
-	private JTextField textField;
+	private JTextField tf_tableName;
 	private GridBagConstraints gridBagConstraints_21;
 	private GridBagConstraints gridBagConstraints_22;
 	private GridBagConstraints gridBagConstraints_23;
@@ -662,5 +558,7 @@ public class Index extends javax.swing.JFrame {
 	private JLabel label_2;
 	private JTextField textField_1;
 	private JTextField textField_2;
+	private JLabel label_3;
+	private JTextField tf_templateName;
 
 }

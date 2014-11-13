@@ -36,6 +36,32 @@ public class ZJ_CodeGeneratorUtils {
 		return str;
 	}
 
+	/**
+	 * 把_后的字符大写
+	 * 
+	 * @param str
+	 * @return
+	 * @author 张剑
+	 * @date 2014年11月13日 下午12:59:54
+	 */
+	private static String upperMiddle(String str) {
+		int length = str.length();
+		StringBuffer stringBuffer = new StringBuffer();
+		for (int i = 0; i < length; i++) {
+			char temp = str.charAt(i);
+			if (temp == '_') {
+				stringBuffer.append(temp);
+				if (i < length - 1) {
+					stringBuffer.append(("" + str.charAt(i + 1)).toUpperCase());
+				}
+				i++;
+			} else {
+				stringBuffer.append(temp);
+			}
+		}
+		return stringBuffer.toString().replaceAll("_", "");
+	}
+
 	private static String lowerFirst(String str) {
 		str = str.substring(0, 1).toLowerCase() + str.substring(1);
 		return str;
@@ -56,6 +82,7 @@ public class ZJ_CodeGeneratorUtils {
 	private static String toClassName(String str, String prefix) {
 		str = removePrefix(str, prefix);
 		str = upperFirst(str);
+		str = upperMiddle(str);
 		return str;
 	}
 

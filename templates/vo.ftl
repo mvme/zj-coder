@@ -10,7 +10,7 @@ import java.io.Serializable;
  */
 
 //${tablePojo.tableComment}
-public class ${tablePojo.className}${fileSuffix} implements Serializable {
+public class ${tablePojo.className}${fileNameSuffix} implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//属性
 <#list tablePojo.fieldlist as field >

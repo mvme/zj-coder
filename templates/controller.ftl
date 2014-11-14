@@ -11,7 +11,7 @@ import com.jfinal.core.Controller;
 import com.jfinal.log.Logger;
 import com.jfinal.render.JsonRender;
 
-public class ${tablePojo.className}${fileSuffix} extends Controller
+public class ${tablePojo.className}${fileNameSuffix} extends Controller
 {
     @SuppressWarnings("unused")
 	private static final Logger logger = Logger.getLogger(Object.class);

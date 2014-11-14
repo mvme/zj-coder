@@ -67,6 +67,14 @@ public class ZJ_CodeGeneratorUtils {
 		return str;
 	}
 
+	/**
+	 * 获取类名
+	 * 
+	 * @param str
+	 * @return
+	 * @author 张剑
+	 * @date 2014年11月14日 下午12:49:27
+	 */
 	private static String toClassName(String str) {
 		return toClassName(str, tablePrefix);
 	}

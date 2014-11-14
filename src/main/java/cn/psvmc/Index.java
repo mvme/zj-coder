@@ -247,7 +247,7 @@ public class Index extends javax.swing.JFrame {
 
 		label_1 = new JLabel("删除原文件：");
 		GridBagConstraints gbc_label_1 = new GridBagConstraints();
-		gbc_label_1.anchor = GridBagConstraints.WEST;
+		gbc_label_1.anchor = GridBagConstraints.EAST;
 		gbc_label_1.insets = new Insets(0, 0, 5, 5);
 		gbc_label_1.gridx = 0;
 		gbc_label_1.gridy = 0;

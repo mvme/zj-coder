@@ -1,22 +1,24 @@
 package cn.psvmc;
 
+import java.awt.BorderLayout;
+import java.awt.Color;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
+import java.awt.Rectangle;
 import java.io.IOException;
 import java.sql.SQLException;
 
+import javax.swing.JButton;
 import javax.swing.JCheckBox;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import cn.psvmc.utils.ZJ_ConfigUtils;
 import cn.psvmc.utils.ZJ_FolderUtils;
 import freemarker.template.TemplateException;
-import java.awt.Color;
-import java.awt.BorderLayout;
-import java.awt.Rectangle;
 
 /**
  * @文件名：Index.java
@@ -30,6 +32,8 @@ public class Index extends javax.swing.JFrame {
 	private static String selectTableName = "";
 	private static String namespace = "";
 	private static String tablePrefix = "";
+	private static String fileNameSuffix = "";
+	private static String fileName = "";
 	private static String fileSuffix = "";
 	private static String templateName = "";
 	private static String outputPath = "";
@@ -71,7 +75,6 @@ public class Index extends javax.swing.JFrame {
 		jButton2 = new javax.swing.JButton();
 		jTextField10 = new javax.swing.JTextField();
 		jButton4 = new javax.swing.JButton();
-		jButton1 = new javax.swing.JButton();
 
 		jDialog1.setAlwaysOnTop(true);
 		jDialog1.setBounds(new java.awt.Rectangle(0, 0, 600, 400));
@@ -98,7 +101,7 @@ public class Index extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("\u4ee3\u7801\u751f\u6210\u5668(by\u5f20\u5251)");
 		setAlwaysOnTop(true);
-		setBounds(new Rectangle(100, 100, 335, 300));
+		setBounds(new Rectangle(100, 100, 335, 360));
 		setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		setFont(new java.awt.Font("新宋体", 0, 12));
 		setForeground(java.awt.Color.white);
@@ -260,7 +263,7 @@ public class Index extends javax.swing.JFrame {
 
 		label = new JLabel("过滤表名：");
 		GridBagConstraints gbc_label = new GridBagConstraints();
-		gbc_label.anchor = GridBagConstraints.WEST;
+		gbc_label.anchor = GridBagConstraints.EAST;
 		gbc_label.fill = GridBagConstraints.VERTICAL;
 		gbc_label.insets = new Insets(0, 0, 5, 5);
 		gbc_label.gridx = 0;
@@ -278,7 +281,7 @@ public class Index extends javax.swing.JFrame {
 
 		label_3 = new JLabel("所用模板：");
 		GridBagConstraints gbc_label_3 = new GridBagConstraints();
-		gbc_label_3.anchor = GridBagConstraints.WEST;
+		gbc_label_3.anchor = GridBagConstraints.EAST;
 		gbc_label_3.insets = new Insets(0, 0, 5, 5);
 		gbc_label_3.gridx = 0;
 		gbc_label_3.gridy = 2;
@@ -294,19 +297,53 @@ public class Index extends javax.swing.JFrame {
 		gbc_tf_templateName.gridy = 2;
 		jPanel1.add(tf_templateName, gbc_tf_templateName);
 
+		label_5 = new JLabel("文件后缀：");
+		GridBagConstraints gbc_label_5 = new GridBagConstraints();
+		gbc_label_5.anchor = GridBagConstraints.EAST;
+		gbc_label_5.insets = new Insets(0, 0, 5, 5);
+		gbc_label_5.gridx = 0;
+		gbc_label_5.gridy = 3;
+		jPanel1.add(label_5, gbc_label_5);
+
+		tf_fileSuffix = new JTextField();
+		tf_fileSuffix.setColumns(10);
+		GridBagConstraints gbc_tf_fileSuffix = new GridBagConstraints();
+		gbc_tf_fileSuffix.insets = new Insets(0, 0, 5, 0);
+		gbc_tf_fileSuffix.fill = GridBagConstraints.HORIZONTAL;
+		gbc_tf_fileSuffix.gridx = 1;
+		gbc_tf_fileSuffix.gridy = 3;
+		jPanel1.add(tf_fileSuffix, gbc_tf_fileSuffix);
+
+		label_4 = new JLabel("单文件名：");
+		GridBagConstraints gbc_label_4 = new GridBagConstraints();
+		gbc_label_4.anchor = GridBagConstraints.EAST;
+		gbc_label_4.insets = new Insets(0, 0, 5, 5);
+		gbc_label_4.gridx = 0;
+		gbc_label_4.gridy = 4;
+		jPanel1.add(label_4, gbc_label_4);
+
+		tf_fileName = new JTextField();
+		GridBagConstraints gbc_tf_fileName = new GridBagConstraints();
+		gbc_tf_fileName.insets = new Insets(0, 0, 5, 0);
+		gbc_tf_fileName.fill = GridBagConstraints.BOTH;
+		gbc_tf_fileName.gridx = 1;
+		gbc_tf_fileName.gridy = 4;
+		jPanel1.add(tf_fileName, gbc_tf_fileName);
+		tf_fileName.setColumns(10);
+
 		jLabel2.setText("命名空间：");
 		gridBagConstraints_3 = new java.awt.GridBagConstraints();
 		gridBagConstraints_3.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_3.gridx = 0;
-		gridBagConstraints_3.gridy = 3;
-		gridBagConstraints_3.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints_3.gridy = 5;
+		gridBagConstraints_3.anchor = GridBagConstraints.EAST;
 		jPanel1.add(jLabel2, gridBagConstraints_3);
 
 		tf_namespace.setText("jTextField2");
 		gbc_tf_namespace = new java.awt.GridBagConstraints();
 		gbc_tf_namespace.insets = new Insets(0, 0, 5, 0);
 		gbc_tf_namespace.gridx = 1;
-		gbc_tf_namespace.gridy = 3;
+		gbc_tf_namespace.gridy = 5;
 		gbc_tf_namespace.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel1.add(tf_namespace, gbc_tf_namespace);
 
@@ -314,31 +351,31 @@ public class Index extends javax.swing.JFrame {
 		gridBagConstraints_5 = new java.awt.GridBagConstraints();
 		gridBagConstraints_5.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_5.gridx = 0;
-		gridBagConstraints_5.gridy = 4;
-		gridBagConstraints_5.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints_5.gridy = 6;
+		gridBagConstraints_5.anchor = GridBagConstraints.EAST;
 		jPanel1.add(jLabel3, gridBagConstraints_5);
 
 		jTextField3.setText("jTextField3");
 		gridBagConstraints_6 = new java.awt.GridBagConstraints();
 		gridBagConstraints_6.insets = new Insets(0, 0, 5, 0);
 		gridBagConstraints_6.gridx = 1;
-		gridBagConstraints_6.gridy = 4;
+		gridBagConstraints_6.gridy = 6;
 		gridBagConstraints_6.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel1.add(jTextField3, gridBagConstraints_6);
 
-		jLabel4.setText("生成文件后缀：");
+		jLabel4.setText("生成文件名后缀：");
 		gridBagConstraints_7 = new java.awt.GridBagConstraints();
 		gridBagConstraints_7.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_7.gridx = 0;
-		gridBagConstraints_7.gridy = 5;
-		gridBagConstraints_7.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints_7.gridy = 7;
+		gridBagConstraints_7.anchor = GridBagConstraints.EAST;
 		jPanel1.add(jLabel4, gridBagConstraints_7);
 
 		jTextField4.setText("jTextField4");
 		gridBagConstraints_9 = new java.awt.GridBagConstraints();
 		gridBagConstraints_9.insets = new Insets(0, 0, 5, 0);
 		gridBagConstraints_9.gridx = 1;
-		gridBagConstraints_9.gridy = 5;
+		gridBagConstraints_9.gridy = 7;
 		gridBagConstraints_9.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		jPanel1.add(jTextField4, gridBagConstraints_9);
 
@@ -351,7 +388,7 @@ public class Index extends javax.swing.JFrame {
 		gridBagConstraints_12 = new java.awt.GridBagConstraints();
 		gridBagConstraints_12.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_12.gridx = 0;
-		gridBagConstraints_12.gridy = 6;
+		gridBagConstraints_12.gridy = 8;
 		gridBagConstraints_12.anchor = java.awt.GridBagConstraints.WEST;
 		gridBagConstraints_12.weightx = 0.1;
 		jPanel1.add(jButton2, gridBagConstraints_12);
@@ -360,7 +397,7 @@ public class Index extends javax.swing.JFrame {
 		gridBagConstraints_20 = new java.awt.GridBagConstraints();
 		gridBagConstraints_20.insets = new Insets(0, 0, 5, 0);
 		gridBagConstraints_20.gridx = 1;
-		gridBagConstraints_20.gridy = 6;
+		gridBagConstraints_20.gridy = 8;
 		gridBagConstraints_20.fill = java.awt.GridBagConstraints.HORIZONTAL;
 		gridBagConstraints_20.weightx = 0.7;
 		jPanel1.add(jTextField10, gridBagConstraints_20);
@@ -368,33 +405,55 @@ public class Index extends javax.swing.JFrame {
 		jButton4.setText("\u4fee\u6539");
 		gridBagConstraints = new java.awt.GridBagConstraints();
 		gridBagConstraints.gridx = 0;
-		gridBagConstraints.gridy = 7;
+		gridBagConstraints.gridy = 9;
 		gridBagConstraints.gridwidth = 2;
 		gridBagConstraints.fill = java.awt.GridBagConstraints.BOTH;
 		jPanel1.add(jButton4, gridBagConstraints);
 
 		jTabbedPane1.addTab("\u751f\u6210\u914d\u7f6e", jPanel1);
 
-		getContentPane().add(jTabbedPane1, BorderLayout.NORTH);
-
-		jButton1.setText("\u4ee3\u7801\u751f\u6210");
-		jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
-			public void mouseClicked(java.awt.event.MouseEvent evt) {
-				jButton1MouseClicked(evt);
-			}
-		});
-		jButton1.addActionListener(new java.awt.event.ActionListener() {
-			public void actionPerformed(java.awt.event.ActionEvent evt) {
-				jButton1ActionPerformed(evt);
-			}
-		});
+		getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
 
 		jButton4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
 				jButton4ActionPerformed(evt);
 			}
 		});
-		getContentPane().add(jButton1, java.awt.BorderLayout.SOUTH);
+
+		act_panel = new JPanel();
+		getContentPane().add(act_panel, BorderLayout.SOUTH);
+		GridBagLayout gbl_act_panel = new GridBagLayout();
+		gbl_act_panel.columnWidths = new int[] { 153, 153 };
+		gbl_act_panel.rowHeights = new int[] { 42, 0 };
+		gbl_act_panel.columnWeights = new double[] { 0.0, 0.0 };
+		gbl_act_panel.rowWeights = new double[] { 0.0, Double.MIN_VALUE };
+		act_panel.setLayout(gbl_act_panel);
+
+		btn2 = new JButton("对库和表生成一个文件");
+		btn2.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				btn2ActionPerformed(evt);
+			}
+		});
+		jButton1 = new javax.swing.JButton();
+		GridBagConstraints gbc_jButton1 = new GridBagConstraints();
+		gbc_jButton1.fill = GridBagConstraints.HORIZONTAL;
+		gbc_jButton1.insets = new Insets(0, 0, 0, 5);
+		gbc_jButton1.gridx = 1;
+		gbc_jButton1.gridy = 0;
+		act_panel.add(jButton1, gbc_jButton1);
+
+		jButton1.setText("对每个表生成");
+		jButton1.addActionListener(new java.awt.event.ActionListener() {
+			public void actionPerformed(java.awt.event.ActionEvent evt) {
+				jButton1ActionPerformed(evt);
+			}
+		});
+		GridBagConstraints gbc_btn2 = new GridBagConstraints();
+		gbc_btn2.fill = GridBagConstraints.HORIZONTAL;
+		gbc_btn2.gridx = 0;
+		gbc_btn2.gridy = 0;
+		act_panel.add(btn2, gbc_btn2);
 	}// </editor-fold>
 		// GEN-END:initComponents
 		// GEN-END:initComponents
@@ -419,7 +478,7 @@ public class Index extends javax.swing.JFrame {
 				ZJ_FolderUtils.delFolder(outputPath);
 				System.out.println("****************************************************************");
 			}
-			CodeCreater.mainCreator();
+			CodeCreater.tableCreator();
 			JOptionPane.showMessageDialog(this, "代码生成完毕！");
 		} catch (IOException e) {
 			JOptionPane.showMessageDialog(this, "输出错误！");
@@ -431,6 +490,30 @@ public class Index extends javax.swing.JFrame {
 			JOptionPane.showMessageDialog(this, "数据库连接有误！");
 		}
 
+	}
+
+	private void btn2ActionPerformed(java.awt.event.ActionEvent evt) {
+		int result = JOptionPane.showConfirmDialog(this, "该生成中模板不能调用表中字段信息,是否继续生成？", "注意", JOptionPane.YES_NO_OPTION);
+		if (result == JOptionPane.YES_OPTION) {
+			try {
+				if (checkBox.isSelected()) {
+					System.out.println("****************************************************************");
+					ZJ_FolderUtils.delFolder(outputPath);
+					System.out.println("****************************************************************");
+				}
+				CodeCreater.databaseCreator();
+				JOptionPane.showMessageDialog(this, "代码生成完毕！");
+			} catch (IOException e) {
+				System.out.println(e);
+				JOptionPane.showMessageDialog(this, "输出错误！");
+			} catch (TemplateException e) {
+				JOptionPane.showMessageDialog(this, "模板加载错误！");
+			} catch (ClassNotFoundException e) {
+				JOptionPane.showMessageDialog(this, "加载错误！");
+			} catch (SQLException e) {
+				JOptionPane.showMessageDialog(this, "数据库连接有误！");
+			}
+		}
 	}
 
 	/**
@@ -456,15 +539,13 @@ public class Index extends javax.swing.JFrame {
 		ZJ_ConfigUtils.setProperty("selectTableName", this.tf_tableName.getText());
 		ZJ_ConfigUtils.setProperty("namespace", this.tf_namespace.getText());
 		ZJ_ConfigUtils.setProperty("tablePrefix", this.jTextField3.getText());
-		ZJ_ConfigUtils.setProperty("fileSuffix", this.jTextField4.getText());
+		ZJ_ConfigUtils.setProperty("fileNameSuffix", this.jTextField4.getText());
+		ZJ_ConfigUtils.setProperty("fileSuffix", this.tf_fileSuffix.getText());
+		ZJ_ConfigUtils.setProperty("fileName", this.tf_fileName.getText());
 		ZJ_ConfigUtils.setProperty("templateName", this.tf_templateName.getText());
 		ZJ_ConfigUtils.setProperty("outputPath", this.jTextField10.getText());
 		init();
 		JOptionPane.showMessageDialog(this, "修改成功！");
-	}
-
-	private void jButton1MouseClicked(java.awt.event.MouseEvent evt) {
-
 	}
 
 	/**
@@ -477,7 +558,9 @@ public class Index extends javax.swing.JFrame {
 		selectTableName = ZJ_ConfigUtils.getProperty("selectTableName");
 		namespace = ZJ_ConfigUtils.getProperty("namespace");
 		tablePrefix = ZJ_ConfigUtils.getProperty("tablePrefix");
+		fileNameSuffix = ZJ_ConfigUtils.getProperty("fileNameSuffix");
 		fileSuffix = ZJ_ConfigUtils.getProperty("fileSuffix");
+		fileName = ZJ_ConfigUtils.getProperty("fileName");
 		templateName = ZJ_ConfigUtils.getProperty("templateName");
 		outputPath = ZJ_ConfigUtils.getProperty("outputPath");
 
@@ -490,7 +573,10 @@ public class Index extends javax.swing.JFrame {
 		this.tf_tableName.setText(selectTableName);
 		this.tf_namespace.setText(namespace);
 		this.jTextField3.setText(tablePrefix);
-		this.jTextField4.setText(fileSuffix);
+		this.jTextField4.setText(fileNameSuffix);
+		this.tf_fileSuffix.setText(fileSuffix);
+		this.tf_fileName.setText(fileName);
+		this.jTextField4.setText(fileNameSuffix);
 		this.tf_templateName.setText(templateName);
 		this.jTextField10.setText(outputPath);
 		this.jTextField11.setText(host);
@@ -560,5 +646,11 @@ public class Index extends javax.swing.JFrame {
 	private JTextField textField_2;
 	private JLabel label_3;
 	private JTextField tf_templateName;
+	private JPanel act_panel;
+	private JButton btn2;
+	private JLabel label_4;
+	private JTextField tf_fileName;
+	private JLabel label_5;
+	private JTextField tf_fileSuffix;
 
 }

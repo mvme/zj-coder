@@ -123,7 +123,7 @@ public class ZJ_CodeGeneratorUtils {
 		for (TablePojo tablePojo : tableList) {
 			tablePojo.setObjectsName(toObjectsName(tablePojo.getTableName()));
 			tablePojo.setClassName(toClassName(tablePojo.getTableName()));
-			tablePojo.setFieldlist(getFieldList(tablePojo.getTableName()));
+			tablePojo.setFieldList(getFieldList(tablePojo.getTableName()));
 		}
 		return tableList;
 	}

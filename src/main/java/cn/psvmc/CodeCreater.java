@@ -58,7 +58,6 @@ public class CodeCreater {
 		tempData.put("namespace", namespace);
 		tempData.put("fileNameSuffix", fileNameSuffix);
 		tempData.put("fileName", fileName);
-		tempData.put("templateName", templateName);
 		Writer out = null;
 		for (TablePojo tablePojo : tableList) {
 			if (tablePojo.getTableName().contains(selectTableName)) {
@@ -97,7 +96,6 @@ public class CodeCreater {
 		tempData.put("namespace", namespace);
 		tempData.put("fileNameSuffix", fileNameSuffix);
 		tempData.put("fileName", fileName);
-		tempData.put("templateName", templateName);
 		tempData.put("tableList", tableList);
 		Writer out = null;
 

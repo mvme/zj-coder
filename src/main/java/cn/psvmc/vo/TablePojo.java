@@ -15,7 +15,7 @@ public class TablePojo {
 	private String className;
 	private String objectsName;
 	private String tableComment;
-	private List<FieldPojo> fieldlist;
+	private List<FieldPojo> fieldList;
 
 	public String getTableName() {
 		return tableName;
@@ -49,16 +49,12 @@ public class TablePojo {
 		this.tableComment = tableComment;
 	}
 
-	public List<FieldPojo> getFieldlist() {
-		return fieldlist;
+	public List<FieldPojo> getFieldList() {
+		return fieldList;
 	}
 
-	public void setFieldlist(List<FieldPojo> fieldlist) {
-		this.fieldlist = fieldlist;
+	public void setFieldList(List<FieldPojo> fieldList) {
+		this.fieldList = fieldList;
 	}
 
-	@Override
-	public String toString() {
-		return "TablePojo [tableName=" + tableName + ", className=" + className + ", objectsName=" + objectsName + ", tableComment=" + tableComment + ", fieldlist=" + fieldlist + "]";
-	}
 }

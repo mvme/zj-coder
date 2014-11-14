@@ -19,6 +19,8 @@ import javax.swing.JTextField;
 import cn.psvmc.utils.ZJ_ConfigUtils;
 import cn.psvmc.utils.ZJ_FolderUtils;
 import freemarker.template.TemplateException;
+import javax.swing.JTextArea;
+import javax.swing.JTabbedPane;
 
 /**
  * @文件名：Index.java
@@ -49,6 +51,39 @@ public class Index extends javax.swing.JFrame {
 		setBackground(Color.ORANGE);
 		initComponents();
 		init();
+		StringBuffer onefile = new StringBuffer();
+		onefile.append(" now(当前时间 )\n");
+		onefile.append(" namespace(命名空间 如：cn.psvmc.model)\n");
+		onefile.append(" fileSuffix(文件后缀 如：userVo.java中的java)\n");
+		onefile.append(" fileName(文件名 如：userVo.java中的user)\n");
+		onefile.append(" tableList(库中表列表列表 )\n");
+		this.ta_database.setText(onefile.toString());
+		
+		StringBuffer tablefile = new StringBuffer();
+		tablefile.append(" now(当前时间 )\n");
+		tablefile.append(" namespace(命名空间 如：cn.psvmc.model)\n");
+		tablefile.append(" fileNameSuffix(文件名后缀 如：userVo.java中的Vo)\n");
+		tablefile.append(" fileName(文件名 如：userVo.java中的user)\n");
+		tablefile.append(" tablePojo(表对象 )\n");
+		this.ta_table.setText(tablefile.toString());
+		
+		StringBuffer tablePars = new StringBuffer();
+		tablePars.append(" tableName(数据库中的表名 如：tb_user)\n");
+		tablePars.append(" className(对应的类名 如：User)\n");
+		tablePars.append(" objectsName(对应的文件名 如：user)\n");
+		tablePars.append(" tableComment(表的描述 如：用户表)\n");
+		tablePars.append(" fieldList(表中字段列表 )\n");
+		this.ta_table_pars.setText(tablePars.toString());
+		
+		StringBuffer fieldPars = new StringBuffer();
+		fieldPars.append(" fieldName(表中字段名 如：name)\n");
+		fieldPars.append(" methodName(对应的方法名 如：Name)\n");
+		fieldPars.append(" fieldComment(表中字段的描述 如：用户名)\n");
+		fieldPars.append(" fieldType(表中字段的类型 如：varchar)\n");
+		fieldPars.append(" attributeType(对应实体类的类型 如：String)\n");
+		fieldPars.append(" isKey(是否为主键 如：0)\n");
+		fieldPars.append(" isIncrease(是否自增长 如：0)\n");
+		this.ta_field_pars.setText(fieldPars.toString());
 	}
 
 	// GEN-BEGIN:initComponents
@@ -68,12 +103,16 @@ public class Index extends javax.swing.JFrame {
 		jPanel1 = new javax.swing.JPanel();
 		jLabel2 = new javax.swing.JLabel();
 		tf_namespace = new javax.swing.JTextField();
+		tf_namespace.setToolTipText("namespace");
 		jLabel3 = new javax.swing.JLabel();
 		jTextField3 = new javax.swing.JTextField();
+		jTextField3.setToolTipText("把数据库中表类似于tb_user中的tb_去掉");
 		jLabel4 = new javax.swing.JLabel();
 		jTextField4 = new javax.swing.JTextField();
+		jTextField4.setToolTipText("文件名后缀 如：abcVo.java 中的Vo");
 		jButton2 = new javax.swing.JButton();
 		jTextField10 = new javax.swing.JTextField();
+		jTextField10.setToolTipText("保存生成文件的位置");
 		jButton4 = new javax.swing.JButton();
 
 		jDialog1.setAlwaysOnTop(true);
@@ -101,7 +140,7 @@ public class Index extends javax.swing.JFrame {
 		setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 		setTitle("\u4ee3\u7801\u751f\u6210\u5668(by\u5f20\u5251)");
 		setAlwaysOnTop(true);
-		setBounds(new Rectangle(100, 100, 335, 360));
+		setBounds(new Rectangle(100, 100, 400, 360));
 		setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
 		setFont(new java.awt.Font("新宋体", 0, 12));
 		setForeground(java.awt.Color.white);
@@ -254,6 +293,7 @@ public class Index extends javax.swing.JFrame {
 		jPanel1.add(label_1, gbc_label_1);
 
 		checkBox = new JCheckBox("");
+		checkBox.setToolTipText("是否删除目录中的原有文件");
 		GridBagConstraints gbc_checkBox = new GridBagConstraints();
 		gbc_checkBox.anchor = GridBagConstraints.WEST;
 		gbc_checkBox.insets = new Insets(0, 0, 5, 0);
@@ -271,6 +311,7 @@ public class Index extends javax.swing.JFrame {
 		jPanel1.add(label, gbc_label);
 
 		tf_tableName = new JTextField();
+		tf_tableName.setToolTipText("模糊匹配数据库中的表名");
 		GridBagConstraints gbc_tf_tableName = new GridBagConstraints();
 		gbc_tf_tableName.insets = new Insets(0, 0, 5, 0);
 		gbc_tf_tableName.fill = GridBagConstraints.HORIZONTAL;
@@ -288,6 +329,7 @@ public class Index extends javax.swing.JFrame {
 		jPanel1.add(label_3, gbc_label_3);
 
 		tf_templateName = new JTextField();
+		tf_templateName.setToolTipText("所用的模板");
 		tf_templateName.setText((String) null);
 		tf_templateName.setColumns(10);
 		GridBagConstraints gbc_tf_templateName = new GridBagConstraints();
@@ -306,6 +348,7 @@ public class Index extends javax.swing.JFrame {
 		jPanel1.add(label_5, gbc_label_5);
 
 		tf_fileSuffix = new JTextField();
+		tf_fileSuffix.setToolTipText("文件名后缀 如：abcVo.java 中的java");
 		tf_fileSuffix.setColumns(10);
 		GridBagConstraints gbc_tf_fileSuffix = new GridBagConstraints();
 		gbc_tf_fileSuffix.insets = new Insets(0, 0, 5, 0);
@@ -323,6 +366,7 @@ public class Index extends javax.swing.JFrame {
 		jPanel1.add(label_4, gbc_label_4);
 
 		tf_fileName = new JTextField();
+		tf_fileName.setToolTipText("该字段只有在生成单个文件时生效");
 		GridBagConstraints gbc_tf_fileName = new GridBagConstraints();
 		gbc_tf_fileName.insets = new Insets(0, 0, 5, 0);
 		gbc_tf_fileName.fill = GridBagConstraints.BOTH;
@@ -389,7 +433,7 @@ public class Index extends javax.swing.JFrame {
 		gridBagConstraints_12.insets = new Insets(0, 0, 5, 5);
 		gridBagConstraints_12.gridx = 0;
 		gridBagConstraints_12.gridy = 8;
-		gridBagConstraints_12.anchor = java.awt.GridBagConstraints.WEST;
+		gridBagConstraints_12.anchor = GridBagConstraints.EAST;
 		gridBagConstraints_12.weightx = 0.1;
 		jPanel1.add(jButton2, gridBagConstraints_12);
 
@@ -413,6 +457,25 @@ public class Index extends javax.swing.JFrame {
 		jTabbedPane1.addTab("\u751f\u6210\u914d\u7f6e", jPanel1);
 
 		getContentPane().add(jTabbedPane1, BorderLayout.CENTER);
+
+		tabbedPane = new JTabbedPane(JTabbedPane.TOP);
+		jTabbedPane1.addTab("使用说明", null, tabbedPane, null);
+
+		ta_table = new JTextArea();
+		ta_table.setColumns(10);
+		ta_table.setRows(12);
+		tabbedPane.addTab("多表生成", null, ta_table, null);
+
+		ta_database = new JTextArea();
+		ta_database.setRows(12);
+		ta_database.setColumns(10);
+		tabbedPane.addTab("单文件生成", null, ta_database, null);
+
+		ta_table_pars = new JTextArea();
+		tabbedPane.addTab("可取表参数", null, ta_table_pars, null);
+
+		ta_field_pars = new JTextArea();
+		tabbedPane.addTab("可取字段参数", null, ta_field_pars, null);
 
 		jButton4.addActionListener(new java.awt.event.ActionListener() {
 			public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -652,5 +715,10 @@ public class Index extends javax.swing.JFrame {
 	private JTextField tf_fileName;
 	private JLabel label_5;
 	private JTextField tf_fileSuffix;
+	private JTabbedPane tabbedPane;
+	private JTextArea ta_table;
+	private JTextArea ta_database;
+	private JTextArea ta_table_pars;
+	private JTextArea ta_field_pars;
 
 }

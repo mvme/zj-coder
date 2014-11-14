@@ -31,8 +31,4 @@ public class ${tablePojo.className} extends Model<${tablePojo.className}> {
 		return dataGrid;
 	}
 
-	public String delete(String ids) {
-		ZJ_Db.dels("${tablePojo.tableName}", ids);
-		return ids;
-	}
 }

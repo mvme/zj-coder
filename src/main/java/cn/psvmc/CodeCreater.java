@@ -73,7 +73,7 @@ public class CodeCreater {
 				temp1.process(tempData, out);
 				out.flush();
 				out.close();
-				System.out.println(path + tablePojo.getClassName() + fileNameSuffix + ".java生成了");
+				System.out.println(path + tablePojo.getClassName() + fileNameSuffix + "." + fileSuffix);
 			}
 		}
 		System.out.println("*****************************文件生成完毕****************************");
@@ -102,13 +102,13 @@ public class CodeCreater {
 		// 去输出
 		File outFolder = new File(path);
 		outFolder.mkdirs();
-		File outFile = new File(path + "/" + database + fileNameSuffix + "." + fileSuffix);
+		File outFile = new File(path + "/" + fileName + fileNameSuffix + "." + fileSuffix);
 		FileOutputStream fos = new FileOutputStream(outFile);
 		OutputStreamWriter oWriter = new OutputStreamWriter(fos, "UTF-8");// 这个地方对流的编码不可或缺，
 		out = new BufferedWriter(oWriter);
 		temp1.process(tempData, out);
 		out.flush();
 		out.close();
-		System.out.println(path + database + fileNameSuffix + ".java生成了");
+		System.out.println(path + fileName + fileNameSuffix + "."+fileSuffix+"生成了");
 	}
 }

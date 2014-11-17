@@ -58,6 +58,7 @@ public class CodeCreater {
 		tempData.put("namespace", namespace);
 		tempData.put("fileNameSuffix", fileNameSuffix);
 		tempData.put("fileName", fileName);
+		tempData.put("fileSuffix", fileSuffix);
 		Writer out = null;
 		for (TablePojo tablePojo : tableList) {
 			if (tablePojo.getTableName().contains(selectTableName)) {
@@ -96,6 +97,7 @@ public class CodeCreater {
 		tempData.put("namespace", namespace);
 		tempData.put("fileNameSuffix", fileNameSuffix);
 		tempData.put("fileName", fileName);
+		tempData.put("fileSuffix", fileSuffix);
 		tempData.put("tableList", tableList);
 		Writer out = null;
 
@@ -109,6 +111,6 @@ public class CodeCreater {
 		temp1.process(tempData, out);
 		out.flush();
 		out.close();
-		System.out.println(path + fileName + fileNameSuffix + "."+fileSuffix+"生成了");
+		System.out.println(path + fileName + fileNameSuffix + "." + fileSuffix + "生成了");
 	}
 }

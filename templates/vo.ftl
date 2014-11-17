@@ -3,7 +3,7 @@ package ${namespace};
 import java.io.Serializable;
 
 /**
- * @文件名：${tablePojo.className}${fileSuffix}.java
+ * @文件名：${tablePojo.className}${fileNameSuffix}.${fileSuffix}
  * @作用：${tablePojo.tableComment}
  * @作者：张剑
  * @创建时间：${now}
@@ -13,18 +13,18 @@ import java.io.Serializable;
 public class ${tablePojo.className}${fileNameSuffix} implements Serializable {
 	private static final long serialVersionUID = 1L;
 	//属性
-<#list tablePojo.fieldlist as field >
+<#list tablePojo.fieldList as field >
 	private ${field.attributeType} ${field.fieldName};//${field.fieldComment}
 </#list>
 	//构造方法
 	public ${tablePojo.className}${fileSuffix}() {}
-	public ${tablePojo.className}${fileSuffix}(<#list tablePojo.fieldlist as field >${field.attributeType} ${field.fieldName}<#if field_has_next>,</#if></#list>) {
-		<#list tablePojo.fieldlist as field >
+	public ${tablePojo.className}${fileSuffix}(<#list tablePojo.fieldList as field >${field.attributeType} ${field.fieldName}<#if field_has_next>,</#if></#list>) {
+		<#list tablePojo.fieldList as field >
 		this.${field.fieldName}=${field.fieldName};
 		</#list>
 	}
 	//get-set方法
-<#list tablePojo.fieldlist as field >
+<#list tablePojo.fieldList as field >
 	public ${field.attributeType} get${field.methodName}() {
 		return ${field.fieldName}; 
 	}
@@ -46,7 +46,7 @@ public class ${tablePojo.className}${fileNameSuffix} implements Serializable {
 	//toString方法
 	@Override
 	public String toString() {
-		return "${tablePojo.className}${fileSuffix} [<#list tablePojo.fieldlist as field >${field.fieldName}="+${field.fieldName}+"<#if field_has_next>,</#if></#list>]";
+		return "${tablePojo.className}${fileSuffix} [<#list tablePojo.fieldList as field >${field.fieldName}="+${field.fieldName}+"<#if field_has_next>,</#if></#list>]";
 	}
 
 }

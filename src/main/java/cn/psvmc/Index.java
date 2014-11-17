@@ -56,17 +56,19 @@ public class Index extends javax.swing.JFrame {
 		onefile.append(" namespace(命名空间 如：cn.psvmc.model)\n");
 		onefile.append(" fileSuffix(文件后缀 如：userVo.java中的java)\n");
 		onefile.append(" fileName(文件名 如：userVo.java中的user)\n");
+		onefile.append(" fileSuffix(文件名 如：userVo.java中的java)\n");
 		onefile.append(" tableList(库中表列表列表 )\n");
 		this.ta_database.setText(onefile.toString());
-		
+
 		StringBuffer tablefile = new StringBuffer();
 		tablefile.append(" now(当前时间 )\n");
 		tablefile.append(" namespace(命名空间 如：cn.psvmc.model)\n");
 		tablefile.append(" fileNameSuffix(文件名后缀 如：userVo.java中的Vo)\n");
 		tablefile.append(" fileName(文件名 如：userVo.java中的user)\n");
+		tablefile.append(" fileSuffix(文件名 如：userVo.java中的java)\n");
 		tablefile.append(" tablePojo(表对象 )\n");
 		this.ta_table.setText(tablefile.toString());
-		
+
 		StringBuffer tablePars = new StringBuffer();
 		tablePars.append(" tableName(数据库中的表名 如：tb_user)\n");
 		tablePars.append(" className(对应的类名 如：User)\n");
@@ -74,7 +76,7 @@ public class Index extends javax.swing.JFrame {
 		tablePars.append(" tableComment(表的描述 如：用户表)\n");
 		tablePars.append(" fieldList(表中字段列表 )\n");
 		this.ta_table_pars.setText(tablePars.toString());
-		
+
 		StringBuffer fieldPars = new StringBuffer();
 		fieldPars.append(" fieldName(表中字段名 如：name)\n");
 		fieldPars.append(" methodName(对应的方法名 如：Name)\n");

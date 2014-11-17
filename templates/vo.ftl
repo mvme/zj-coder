@@ -17,8 +17,8 @@ public class ${tablePojo.className}${fileNameSuffix} implements Serializable {
 	private ${field.attributeType} ${field.fieldName};//${field.fieldComment}
 </#list>
 	//构造方法
-	public ${tablePojo.className}${fileSuffix}() {}
-	public ${tablePojo.className}${fileSuffix}(<#list tablePojo.fieldList as field >${field.attributeType} ${field.fieldName}<#if field_has_next>,</#if></#list>) {
+	public ${tablePojo.className}${fileNameSuffix}() {}
+	public ${tablePojo.className}${fileNameSuffix}(<#list tablePojo.fieldList as field >${field.attributeType} ${field.fieldName}<#if field_has_next>,</#if></#list>) {
 		<#list tablePojo.fieldList as field >
 		this.${field.fieldName}=${field.fieldName};
 		</#list>
